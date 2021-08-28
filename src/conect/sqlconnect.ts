@@ -10,7 +10,6 @@ export default function connectSQL():void{
         password: process.env.PASSWORDDB,
         port: parseInt(process.env.PORTSQL!),
     });
-
     conexion.connect(function (err: any) {
         if (err) {
             console.log(err)

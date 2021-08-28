@@ -2,9 +2,10 @@ import redis from 'redis';
 import { info } from 'utils/logger';
 import chalk from 'chalk';
 
+export var client: redis.RedisClient;
 
-export default function connectRedis():void{
-    var client = redis.createClient({
+export function connectRedis():void{
+    client = redis.createClient({
         host:process.env.REDISHOST,
         port:parseInt(process.env.REDISPORT!)
     });
@@ -14,6 +15,5 @@ export default function connectRedis():void{
     client.on('connect', function (err) {
         info('Connected to redis successfully')
     });
-    
 }
 
