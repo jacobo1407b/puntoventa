@@ -1,20 +1,22 @@
 import { Request, Response, NextFunction } from 'express';
+//import {Payload} from 'types';
+import Token from 'services/Token/Token';
 import error_types from "config/error_types";
 import passport from "passport";
 
+var tok = new Token();
 export let middlewares = {
-    ensureAuthenticated: (req: Request, res: Response, next: NextFunction) => {
-        passport.authenticate("jwt", { session: false }, (err, user, info) => {
-            if (info) {
-                return next(new error_types.Error401(info.message));
-            }
+    ensureAuthenticated: async (req: Request, res: Response, next: NextFunction) => {
+        const userdata = await tok.getTokenUser(req.cookies.key)
+        passport.authenticate("jwt", { session: false }, (err) => {
+
             if (err) {
                 return next(err);
             }
-            if (!user) {
+            if (!userdata) {
                 return next(new error_types.Error403("no tienes acceso."));
             }
-            req.user = user;
+            req.user = userdata;
             next();
         })(req, res, next);
     },

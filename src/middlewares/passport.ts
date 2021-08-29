@@ -13,14 +13,13 @@ passport.use(new LocalStrategy({
     usernameField: 'email',
     session: false
 }, async (email:string, password:string, done) => {
-    //const user = await User.findOne({ nombre: nombre });
     /**consulta a la bd */
-    const user = auth.getUser(email);
+    const user = await auth.getUser(email);
     if (!user) {
         return done(null, false);
     }
     else {
-        const match = await auth.checkPassword(password,user.hash)
+        const match = await auth.checkPassword(password,user.Password);
         if (match) {
             return done(null, user);
         } else {
@@ -38,6 +37,7 @@ let opts:StrategyOptions  = {
 
 passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
     console.log(jwt_payload);
+    done(null,true)
 }));
 
 /**

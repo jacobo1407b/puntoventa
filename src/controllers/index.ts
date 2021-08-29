@@ -1,1 +1,1 @@
-export {auth} from './auth.controller';
+export {auth,work,logout} from './auth.controller';

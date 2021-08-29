@@ -1,9 +1,10 @@
-import mysql from 'mysql';
+import mysql,{Connection} from 'mysql';
 import { info } from 'utils/logger';
 
-export default function connectSQL():void{
-    var conexion = mysql.createConnection({
-        connectTimeout:8800,
+export var conexion:Connection;
+export function connectSQL():void{
+    conexion = mysql.createConnection({
+        connectTimeout:10800,
         host: process.env.HOSTSQL,
         database: process.env.DBNAME,
         user: process.env.USERDB,
@@ -12,8 +13,7 @@ export default function connectSQL():void{
     });
     conexion.connect(function (err: any) {
         if (err) {
-            console.log(err)
-            return;
+            throw err;
         }
         info(`successful MySQL connection with ID ${conexion.threadId}`)
     });
