@@ -40,6 +40,7 @@ export function getUserEmail(email: string): Promise<userdata | undefined> {
     });
 }
 
+//redis fron auth
 export function setRedis(token: string): string {
     const key = uuidv4();
     client.set(key, token)
