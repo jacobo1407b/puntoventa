@@ -12,7 +12,8 @@ export type Payload = {
     sub: string | number | null,
     exp: number | Date,
     username: string,
-    email: string
+    email: string,
+    role:number
 }
 export interface RequestCustom extends Request
 {

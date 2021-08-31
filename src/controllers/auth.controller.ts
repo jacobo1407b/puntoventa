@@ -17,7 +17,8 @@ export function auth (req: Request,res:Response,next:NextFunction){
                 sub:user.id,
                 exp:Date.now()+40000,
                 username:user.Usuario,
-                email:user.Email
+                email:user.Email,
+                role:user.Rol
             }
             var key = tokenclass.setKeyRedis(tokenclass.genToken(payload));
             user.Password = "";

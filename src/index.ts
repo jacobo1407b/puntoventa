@@ -7,21 +7,16 @@ import { config } from 'config';
 import { info } from 'utils/logger';
 import loader from 'middlewares/loaders';
 import { middlewares } from 'middlewares/auth';
-import timeout from 'connect-timeout';
 
 const app = express();
 
 loader();
 //settings
-function haltOnTimedout(req: Request, res: any, next: NextFunction) {
-    if (!req.timedout) next()
-}
 app.set('port', config.HOST);
 app.set('json spaces', 2);
 //middlewares
-app.use(haltOnTimedout)
-app.use(cookieParser());
-app.use(timeout(`2s`))
+
+app.use(cookieParser('QWERTYU'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(passport.initialize());
