@@ -40,6 +40,24 @@ export function getUserEmail(email: string): Promise<userdata | undefined> {
     });
 }
 
+export function updateEmail(email:string,id:number){
+    return new Promise((resolve,reject)=>{
+        conexion.query('UPDATE empleados SET Email = ? WHERE id = ?',[email,id],function(err,result){
+            if(err)reject(err)
+            resolve(result)
+        });
+    });
+}
+
+export function updatePassword(hash:string,id:number){
+    return new Promise((resolve,reject)=>{
+        conexion.query('UPDATE empleados SET Password = ? WHERE id = ?',[hash,id],function(err,result){
+            if(err)reject(err)
+            resolve(result)
+        });
+    })
+}
+
 //redis fron auth
 export function setRedis(token: string): string {
     const key = uuidv4();

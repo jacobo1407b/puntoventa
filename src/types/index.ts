@@ -48,3 +48,30 @@ export type responseuser = {
     protocol41: boolean,
     changedRows: number
 }
+export type clientedata = {
+    idcliente: null | number,
+    RFC?:string,
+    nombre:string,
+    telefono:string,
+    direccion?:string,
+    dateadd:number|Date,
+    usuario_id?:number
+}
+
+export type compradata={
+    idcompra:null | number,
+    codproducto:number//recibe id del producto
+    fecha:number | Date,
+    cantidad:number,
+    precio:number,
+    usuario_id:number
+}
+
+export type facturaDetalles={
+    idFactura:number,
+    nofactura:number,
+    uuid:string
+    Producto:number,
+    cantidad:number,
+    Preciototal:number
+}
