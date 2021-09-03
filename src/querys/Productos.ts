@@ -1,8 +1,8 @@
 import { productos } from 'types';
 import { conexion } from 'conect/sqlconnect';
 
-export default class Producto {
-    getAllProducts(): Promise<productos[] | undefined> {
+
+    export function getAllProducts(): Promise<productos[] | undefined> {
         var sql = "SELECT * FROM producto";
         return new Promise<productos[]>((resolve, reject) => {
             conexion.query({
@@ -15,7 +15,7 @@ export default class Producto {
         })
     }
 
-    getProductoId(id: number): Promise<productos | undefined> {
+    export function getProductoId(id: number): Promise<productos | undefined> {
         var sql = "SELECT * FROM producto WHERE CodigoP=?";
         return new Promise<productos | undefined>((resolve, reject) => {
             conexion.query({
@@ -29,7 +29,7 @@ export default class Producto {
         })
     }
 
-    updateProducto(id: number, nombre: string, existencia: number, precio: number, proveedor: number, foto: string) {
+    export function updateProducto(id: number, nombre: string, existencia: number, precio: number, proveedor: number, foto: string) {
         var sql: string = "UPDATE producto SET Nombre=? Precio=? Existencia=? Proveedor=? foto=? WHERE CodigoP=?"
         return new Promise<any>((resolve, reject) => {
             conexion.query(sql, [nombre, precio, existencia, proveedor, foto, id], function (err, result) {
@@ -39,7 +39,7 @@ export default class Producto {
         })
     }
 
-    deleteProducto(id:number){
+    export function deleteProducto(id:number){
         var sql = "DELETE FROM producto WHERE CodigoP=?";
         return new Promise<any>((resolve, reject) => {
             conexion.query({
@@ -53,4 +53,3 @@ export default class Producto {
         });
     }
 
-}

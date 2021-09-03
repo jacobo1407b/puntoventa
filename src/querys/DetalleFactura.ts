@@ -1,9 +1,9 @@
 import { conexion } from 'conect/sqlconnect';
 import {facturaDetalles} from 'types';
 
-export default class DetalleFactura {
 
-    getDetalleFacturaId(id:number): Promise<facturaDetalles | undefined>{
+
+    export function getDetalleFacturaId(id:number): Promise<facturaDetalles | undefined>{
         var sql = "SELECT * FROM detallefactura WHERE idFactura=?";
         return new Promise<facturaDetalles>((resolve, reject) => {
             conexion.query({
@@ -17,7 +17,7 @@ export default class DetalleFactura {
         })
     }
 
-    deleteFactura(id:number){
+    export function deleteFactura(id:number){
         var sql = "DELETE FROM detallefactura WHERE idFactura=?";
         return new Promise<any>((resolve, reject) => {
             conexion.query({
@@ -31,4 +31,3 @@ export default class DetalleFactura {
         })
     }
 
-}
