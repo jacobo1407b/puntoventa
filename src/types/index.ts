@@ -68,10 +68,39 @@ export type compradata={
 }
 
 export type facturaDetalles={
-    idFactura:number,
+    idFactura:number|null,
     nofactura:number,
     uuid:string
     Producto:number,
     cantidad:number,
     Preciototal:number
+}
+export type factura={
+    nofactura:number|null,
+    fecha:number | Date,
+    usuario:number,
+    totalfactura:number,
+    codcliente:number
+}
+
+export type productos = {
+    CodigoP:number|null,
+    Nombre:string,
+    Precio:number,
+    Existencia:number,
+    Proveedor:number,
+    foto:string,
+    nameImage:string,
+    usuario_id:number,
+    date_add:number | Date
+}
+
+export type proveedor = {
+    idProveedor:number|null,
+    Razon:string,
+    Representante:string,
+    Telefono:string,
+    RFC:string,
+    usuario_id:number,
+    dateadd:number|Date
 }

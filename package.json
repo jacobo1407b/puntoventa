@@ -7,6 +7,7 @@
     "dev": "NODE_ENV=development NODE_PATH=./src nodemon src/index.ts",
     "build": "rm -rf build/  && tsc",
     "start": "NODE_ENV=production NODE_PATH=./build node build/index.js",
+    "initdb":"NODE_ENV=development NODE_PATH=./src ts-node src/sql/init.ts",
     "test:service": "NODE_ENV=development NODE_PATH=./src  ts-node src/services/Auth/Auth.test.ts"
   },
   "dependencies": {

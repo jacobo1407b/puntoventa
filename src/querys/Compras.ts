@@ -3,9 +3,9 @@ import { conexion } from 'conect/sqlconnect';
 
 export default class Compras {
 
-    getComprasAll(){
+    getComprasAll(): Promise<compradata[]> {
         var sql = "SELECT * FROM compras";
-        return new Promise((resolve, reject) => {
+        return new Promise<compradata[]>((resolve, reject) => {
             conexion.query({
                 sql,
                 timeout: 40000,
@@ -16,7 +16,7 @@ export default class Compras {
         })
     }
 
-    
+
     createCompra(data: compradata): Promise<unknown> {
         return new Promise((resolve, reject) => {
             conexion.query('INSERT INTO compras SET', data, function (err, result) {
