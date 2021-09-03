@@ -1,11 +1,6 @@
 import express from "express";
-import helmet from 'helmet';
-import cors from 'cors'
-import morgan from 'morgan';
-import bodyParser from "body-parser";
-import cookieParser from 'cookie-parser';
 import createRouter from "routes";
-import passport from "passport";
+import useMiddleware from "middlewares";
 import { config } from 'config';
 import { info } from 'utils/logger';
 import loader from 'middlewares/loaders';
@@ -18,18 +13,10 @@ loader();
 app.set('port', config.HOST);
 app.set('json spaces', 2);
 //middlewares
-app.use(helmet());
-app.use(cors());
-app.use(cookieParser('QWERTYU'));
-app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(passport.initialize());
-
+useMiddleware(app);
 //rutas
 createRouter(app);
 //err
-
 app.use(middlewares.errorHandler);
 app.use(middlewares.notFoundHandler);
 

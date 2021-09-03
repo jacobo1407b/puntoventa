@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-//import {Payload} from 'types';
 import Token from 'services/Token/Token';
 import error_types from "config/error_types";
 import passport from "passport";
